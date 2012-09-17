@@ -1,0 +1,564 @@
+/* Patrick Ward, D11124386 */
+/* DT249, Information Systems and Technology - Year 3 */
+
+/* Web Development */
+/* Assignment 2
+/* Lecturer: Colm O'Sullivan */
+
+/* Colour Scheme - 091D42, 396A92, 9AB4CB, ECEDF2, FDFDFD */
+
+/* Remove Default Formatting - This is a FULL reset taken from http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/ */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+}
+/* remember to define focus styles! */
+:focus {
+    outline: 0;
+}
+body {
+    line-height: 1;
+    color: black;
+    background: #fff;
+    font-family: Georgia;
+    font-size: 12px;
+}
+
+ol, ul {
+    list-style: none;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+caption, th, td {
+    text-align: left;
+    font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: "";
+}
+blockquote, q {
+    quotes: "" "";
+}
+/*--------------- end of reset -------------------------- */
+
+
+/* html5 display rule - handles backwards compatibility with older browsers */
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary{
+    display:block;
+}
+
+body{
+    background-color:#cccccc;
+    font-family: Georgia;
+    font-size: 12px;
+}
+a:hover {
+    color: #c00;
+}
+
+/* overall layout */
+#main_wrapper{
+    display:table;
+    border: 1px solid black;
+    width: 1000px;
+    margin: 20px auto;
+    text-align: left;
+    background-color:#ffffff;
+    box-shadow: 10px 10px 10px #777;
+    -moz-border-radius: 10px;  
+    -webkit-border-radius: 10px;  }
+
+/* Main Header */
+#top_header_left{
+    display:table-cell;
+    background: #f1f1f1;    
+    background:-webkit-linear-gradient(top, #f1f1f1, #e1e1e1);
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 0px;	
+    text-shadow: 5px 5px 10px #777;
+    color: #0060AA;
+    width:480px;
+    border-bottom: 1px solid black;
+    height:50px;
+    -moz-border-radius-topleft: 10px;  
+    -webkit-border-top-left-radius: 10px;  
+}
+
+#top_header_left a{
+    text-decoration:none;
+    color: #0060AA;	
+}
+#top_header_left a:hover {
+    color: #c00;
+}
+#top_header_left h2{
+    font-size: 14px;
+    margin:15px 0px 10px 10px;
+}
+#top_header_right{
+    display:table-cell;
+    text-shadow: 5px 5px 10px #777;
+
+    background:#f1f1f1;
+    background:-webkit-linear-gradient(top, #f1f1f1, #e1e1e1);
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 0px;
+    height:70px;
+    color: #0060AA;
+    width:500px;
+    border-bottom: 1px solid black;
+    -moz-border-radius-topright: 10px;  
+    -webkit-border-top-right-radius: 10px;  
+}
+#top_header_right h1{
+    text-align:right;
+}
+
+/* navigation bar */
+#top_menu{
+}
+#top_menu ul{
+    text-align: right;
+}
+#top_menu li{
+    display: inline-block; /* display left to right instead of one above the other */
+    list-style: none; /* get rid of bullets */
+    margin:15px 0px 10px 10px;
+}
+#top_menu a{
+    font:bold 14px Georgia;
+    text-decoration: none;
+    color: #0060AA;
+}
+
+#top_menu li a:hover {
+    color: #c00;
+}
+
+/* Main Text Formatting */
+p
+{	
+    color: #0060AA;
+    font-family:Georgia, serif;
+    font-size: 13px;
+    line-height: 20px;
+    padding:5px;
+}
+.Bold 
+{
+    color: #0060AA;
+    font-family:Georgia, serif;
+    font-size: 12px;
+    line-height: 20px;
+    padding:5px;
+    font-weight: bold;
+}
+
+h1{
+    font:bold 20px Georgia;
+}
+h2{
+    font:bold 16px Georgia;
+}
+h2 a{
+    font:bold 16px Georgia;
+    text-decoration: none;
+    color: #0060AA;
+}
+
+
+h3{
+    font-family:Georgia, serif;
+    font:bold 14px Georgia;
+
+    padding-bottom:5px;
+    padding-top:10px;
+    color:#0060AA;
+}
+
+h3 a{
+    font:bold 14px Georgia;
+    text-decoration: none;
+    color: #0060AA;
+}
+
+.Table 
+{
+    color: #0060AA;
+    border-width: 0px;
+    border-spacing: 5px;
+    font-family:Georgia, serif;
+    font-size: 12px;
+
+    padding:5px;
+}
+
+.Table tr {
+    border-width: 1px;
+    padding: 5px;
+}
+
+.Table td {
+    padding: 5px;
+}
+
+/* main section */
+#main_section{
+    float: left;
+    min-height:500px;
+    width: 660px;
+    margin: 20px; /* total width is 720px leaving 280px */
+}
+#main_section2{
+    float: left;
+    min-height:500px;
+    width: 960px;
+    margin: 20px; /* total width is 720px leaving 280px */
+}
+
+
+/* article formatting */
+article{
+    color: #0060AA;
+    background: white;
+    border-bottom: 1px solid #0060AA;
+    border-right: 1px solid #0060AA;
+
+    padding: 20px;
+    margin-bottom: 15px; /* seperation between atcles */
+    box-shadow: 5px 5px 10px #777;  
+
+    /* Background-size not implemented yet */  
+    -webkit-background-size: 100%;  
+    -o-background-size: 100%;  
+    -khtml-background-size: 100%;  
+  
+    /* Border-radius not implemented yet */  
+    -moz-border-radius: 22px;  
+    -webkit-border-radius: 22px;  
+    font-family: Georgia, serif;
+}
+article footer{
+    text-align: right;
+}
+aside{
+    color: #0060AA;
+
+    float:left;
+    width: 240px;
+    margin: 20px 0px;
+    padding: 20px; /* 220 + 30 + 30 = 280px; */
+	
+    background:#f1f1f1;
+    background:-webkit-linear-gradient(top, #f1f1f1, #e1e1e1);
+    box-shadow: 5px 5px 10px #777;  
+	
+    border-bottom: 1px solid #0060AA;
+    border-right: 1px solid #0060AA;
+
+    /* Background-size not implemented yet */  
+    -webkit-background-size: 100%;  
+    -o-background-size: 100%;  
+    -khtml-background-size: 100%;  
+  
+    /* Border-radius not implemented yet */  
+    -moz-border-radius: 22px;  
+    -webkit-border-radius: 22px;  
+}
+
+/* main footer */
+#the_footer {
+    display: table;  
+    width: 100%;
+    color: #0060AA;
+    border-top: 1px solid black;
+}
+#footer_left{  
+    display: table-cell;  
+    width: 440px;
+    padding:20px;
+    text-shadow: 5px 5px 10px #777;
+
+    background:#f1f1f1;
+    background:-webkit-linear-gradient(top, #f1f1f1, #e1e1e1);
+    -moz-border-radius-bottomleft: 10px;  
+    -webkit-border-bottom-left-radius: 10px;  
+
+    /* border: 1px solid black; */
+}
+#footer_right {  
+    display: table-cell;  
+    width: 440px;
+    padding:20px;
+    text-align: right;
+    text-shadow: 5px 5px 10px #777;
+    background:#f1f1f1;
+    background:-webkit-linear-gradient(top, #f1f1f1, #e1e1e1);
+    -webkit-border-bottom-right-radius: 10px;  
+    -moz-border-radius-bottomright: 10px;  
+    /* border: 1px solid black; */
+}
+
+
+/* Profile Page */
+#profile_section1{
+    float: left;
+    min-height:200px;
+	
+    width: 960px;
+    margin: 20px;
+}
+
+#personal_details{
+    float:left;
+	
+    color: #0060AA;
+    width: 270px;
+    height:200px;
+    
+    margin:0px;
+    margin-right: 10px;
+    background: white;
+    border-bottom: 1px solid #0060AA;
+    border-right: 1px solid #0060AA;
+
+    padding: 20px;
+    box-shadow: 5px 5px 10px #777;  
+
+    /* Background-size not implemented yet */  
+    -webkit-background-size: 100%;  
+    -o-background-size: 100%;  
+    -khtml-background-size: 100%;  
+  
+    /* Border-radius not implemented yet */  
+    -moz-border-radius: 22px;  
+    -webkit-border-radius: 22px;
+}
+
+#my_status{
+    float:left;
+	
+    color: #0060AA;
+    width: 270px;
+    height:200px;
+	
+    margin:0px;
+
+    background: white;
+    border-bottom: 1px solid #0060AA;
+    border-right: 1px solid #0060AA;
+    padding: 20px;
+    box-shadow: 5px 5px 10px #777;  
+
+    /* Background-size not implemented yet */  
+    -webkit-background-size: 100%;  
+    -o-background-size: 100%;  
+    -khtml-background-size: 100%;  
+  
+    /* Border-radius not implemented yet */  
+    -moz-border-radius: 22px;  
+    -webkit-border-radius: 22px;  
+}
+#profile_photo{
+    display: table-cell;  
+    float:right;
+    
+    text-align: center;
+    color: #0060AA;
+    width: 270px;
+    height:200px;
+	
+    margin:0px;
+
+    background:#f1f1f1;
+    background:-webkit-linear-gradient(top, #f1f1f1, #e1e1e1);
+    border-bottom: 1px solid #0060AA;
+    border-right: 1px solid #0060AA;
+
+    padding: 20px;
+    box-shadow: 5px 5px 10px #777;  
+
+    /* Background-size not implemented yet */  
+    -webkit-background-size: 100%;  
+    -o-background-size: 100%;  
+    -khtml-background-size: 100%;  
+  
+    /* Border-radius not implemented yet */  
+    -moz-border-radius: 22px;  
+    -webkit-border-radius: 22px;  
+}
+
+#profile_section2{
+    float: left;
+    min-height:200px;
+    
+    width: 960px;
+    margin: 20px;
+    margin-top:0px;
+}
+
+#myBlog_preview{
+    float:left;
+    color: #0060AA;
+    width: 595px;
+    min-height:200px;
+	
+    margin:0px;
+    margin-top:10px;
+    background: white;
+    border-bottom: 1px solid #0060AA;
+    border-right: 1px solid #0060AA;
+
+    padding: 20px;
+    box-shadow: 5px 5px 10px #777;  
+
+    /* Background-size not implemented yet */  
+    -webkit-background-size: 100%;  
+    -o-background-size: 100%;  
+    -khtml-background-size: 100%;  
+  
+    /* Border-radius not implemented yet */  
+    -moz-border-radius: 22px;  
+    -webkit-border-radius: 22px;
+}
+
+#myPhotos_preview{
+    float:left;
+    
+    color: #0060AA;
+    width: 595px;
+    min-height: 200px;
+    
+    margin:0px;
+    background: white;
+    border-bottom: 1px solid #0060AA;
+    border-right: 1px solid #0060AA;
+    padding: 20px;
+    box-shadow: 5px 5px 10px #777;  
+
+    /* Background-size not implemented yet */  
+    -webkit-background-size: 100%;  
+    -o-background-size: 100%;  
+    -khtml-background-size: 100%;  
+  
+    /* Border-radius not implemented yet */  
+    -moz-border-radius: 22px;  
+    -webkit-border-radius: 22px;
+}
+#myPhotos_preview figure{
+    float: right;
+    text-align: right;
+    margin-top: -50px;
+    margin-right: 0px;
+    height: 50px;
+    width: 100px; 
+}
+
+#myPhotos_preview article{
+    color: #0060AA;
+    background: white;
+    border-bottom: 1px solid #0060AA;
+    border-right: 1px solid #0060AA;
+    height: 100px;
+    padding: 20px;
+    margin-bottom: 15px; /* seperation between atcles */
+    box-shadow: 5px 5px 10px #777;  
+
+    /* Background-size not implemented yet */  
+    -webkit-background-size: 100%;  
+    -o-background-size: 100%;  
+    -khtml-background-size: 100%;  
+  
+    /* Border-radius not implemented yet */  
+    -moz-border-radius: 22px;  
+    -webkit-border-radius: 22px;  
+    font-family: Georgia, serif;
+}
+
+#friends_list{
+    display: table-cell;  
+    float:right;
+    
+    color: #0060AA;
+    width: 270px;
+    min-height:500px;
+	
+    margin:0px;
+
+    background:#f1f1f1;
+    background:-webkit-linear-gradient(top, #f1f1f1, #e1e1e1);
+    border-bottom: 1px solid #0060AA;
+    border-right: 1px solid #0060AA;
+
+    padding: 20px;
+    box-shadow: 5px 5px 10px #777;  
+
+    /* Background-size not implemented yet */  
+    -webkit-background-size: 100%;  
+    -o-background-size: 100%;  
+    -khtml-background-size: 100%;  
+  
+    /* Border-radius not implemented yet */  
+    -moz-border-radius: 22px;  
+    -webkit-border-radius: 22px;  
+}
+
+#side_options li{
+    list-style: none; /* get rid of bullets */
+    margin:15px 0px 10px 10px;
+}
+#side_options a{
+    font:bold 14px Georgia;
+    text-decoration: none;
+    color: #0060AA;
+}
+
+#side_options li a:hover {
+    color: #c00;
+}
+
+
+#blog_album_page figure {
+    float: right;
+    text-align: right;
+    margin-top: -105px;
+    margin-right: 0px;
+
+    width: 100px;    
+}
+
+#blog_album_page footer{
+    margin-top: 20px;
+    text-align: left;
+}
+
+.highlight{
+    background-color: #F1F1F1;
+}
+
+.transparent{
+    display: none;
+}
+
+.blog{
+    
+}
