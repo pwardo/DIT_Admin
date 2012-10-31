@@ -14,7 +14,7 @@ if (logged_in()){
             <table class="Table">
                 <tr>
                     <td><span class="Bold">User ID: </span></td>
-                    <td><input type ='text' name='login_username' value='<?php echo $username; ?>'></td>
+                    <td><input type ='text' name='login_username'></td>
 		</tr>
 		<tr>
                     <td><span class="Bold">Password: </span></td>

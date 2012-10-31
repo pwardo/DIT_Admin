@@ -49,7 +49,7 @@ $semesters = get_semesters();
                     <tr><td colspan="2"><h3>System Login Details</h3></td></tr>
                     <tr>
                         <td><span class="Bold">Student ID:</span></td>
-                        <td><input type='text' name='studentID' value='<?php echo $studentID; ?>'></td>
+                        <td><input type='text' name='studentID' value='<?php if (!empty($studentID)) echo $studentID; ?>'></td>
                         <td>(8 digit student number i.e. 12345678)</td>
                     </tr>
                     <tr>
