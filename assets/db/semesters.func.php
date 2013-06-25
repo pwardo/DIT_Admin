@@ -13,7 +13,7 @@ function semester_data($semester_id){
     // impode glues stings together, in this case strings are taken from database.
     // result here is `name``email.
     
-    $query = mysql_query("SELECT $fields FROM semesters WHERE semester_id=$semester_id ");
+    $query = mysql_query("SELECT $fields FROM Semesters WHERE semester_id=$semester_id ");
     $query_result = mysql_fetch_assoc($query);
     // retrieve the fields passed from implode function for the current logged in user.
     // and make associative array from the results.
@@ -28,7 +28,7 @@ function semester_data($semester_id){
 
 function semester_check($semester_id){
     $semester_id = (int)$semester_id;
-    $query = mysql_query("SELECT COUNT(semester_id) FROM semesters 
+    $query = mysql_query("SELECT COUNT(semester_id) FROM Semesters 
         WHERE semester_id=$semester_id
             ");
     
@@ -38,10 +38,10 @@ function semester_check($semester_id){
 function get_semesters(){
     $semesters = array();
     
-    $semesters_query = mysql_query("
+    $Semesters_query = mysql_query("
         SELECT id, start_date, end_date, value
-        FROM semesters
-            ORDER BY semesters.id DESC
+        FROM Semesters
+            ORDER BY Semesters.id DESC
         ");
      
     while ($semesters_row = mysql_fetch_assoc($semesters_query)){
@@ -74,7 +74,7 @@ function get_semester_data($semester_id){
         FROM Semesters
 
         WHERE Semesters.id = $semester_id
-        ") or die();
+        ") or die(mysql_error());
         
     
     while ($data_row = mysql_fetch_assoc($data_query)){
@@ -118,7 +118,7 @@ function get_course_data($course_id){
         FROM Courses
 
         WHERE Courses.id = $course_id
-        ") or die();
+        ") or die(mysql_error());
         
     
     while ($data_row = mysql_fetch_assoc($data_query)){
@@ -150,7 +150,7 @@ function get_my_modules($registraion_id){
     
     $modules_query = mysql_query("
         SELECT Registrations_id, Modules_id, grade
-        FROM registrations_has_modules
+        FROM Registrations_has_Modules
         WHERE Registrations_id='$registraion_id'
         ");
      
@@ -190,7 +190,7 @@ function get_course_modules($course_id){
 function get_module_lecturer($module_id){  
     $data_query = mysql_query("
         SELECT Staff_staff_id
-        FROM modules_has_staff
+        FROM Modules_has_Staff
         WHERE modules_id='$module_id'
         ") or die("display_db_query:" . mysql_error());
     
@@ -207,7 +207,7 @@ function get_my_assigned_modules($staff_id){
     
     $modules_query = mysql_query("
         SELECT Modules_id
-        FROM modules_has_staff
+        FROM Modules_has_Staff
         WHERE Staff_staff_id='$staff_id'
         ")or die("display_db_query:" . mysql_error());
      
@@ -228,7 +228,7 @@ function get_module_data($module_id){
         FROM Modules
 
         WHERE Modules.id = $module_id
-        ") or die();
+        ") or die(mysql_error());
         
     
     while ($data_row = mysql_fetch_assoc($data_query)){
@@ -250,7 +250,7 @@ function get_lecturers(){
     
     $lecturers_query = mysql_query("
         SELECT staff_id, first_name, last_name
-        FROM staff
+        FROM Staff
         WHERE Job_type_id = '2'
             ORDER BY staff_id
         ");
@@ -361,7 +361,7 @@ function get_rooms(){
     
     $rooms_query = mysql_query("
         SELECT id, name, capacity
-        FROM rooms
+        FROM Rooms
         ");
      
     while ($rooms_row = mysql_fetch_assoc($rooms_query)){
@@ -382,17 +382,17 @@ function get_rooms(){
 function get_class_data($class_id){
     $class_data_query = mysql_query("
         SELECT DISTINCT 
-            classes.class_id AS id, 
+            Classes.class_id AS id, 
             Time_Slots.id AS Time_slot_id, Time_Slots.startTime AS startTime, Time_Slots.endTime AS endTime,
             Rooms.id AS room_id, Rooms.name AS roomName, Rooms.capacity AS roomCapacity, 
             Days.id AS day_id, Days.Day AS day, 
-            modules.code AS moduleCode, 
-            modules.title AS moduleTitle, modules.id AS module_id
-        FROM classes INNER JOIN Time_Slots INNER JOIN Days INNER JOIN Rooms INNER JOIN modules
-        WHERE classes.Time_slots_id = time_slots.id 
-            AND classes.days_id = days.id 
-            AND classes.rooms_id = rooms.id 
-            AND classes.modules_id = modules.id 
+            Modules.code AS moduleCode, 
+            Modules.title AS moduleTitle, Modules.id AS module_id
+        FROM Classes INNER JOIN Time_Slots INNER JOIN Days INNER JOIN Rooms INNER JOIN Modules
+        WHERE Classes.Time_Slots_id = Time_Slots.id 
+            AND Classes.Days_id = Days.id 
+            AND Classes.Rooms_id = Rooms.id 
+            AND Classes.Modules_id = Modules.id 
             AND Classes.class_id = $class_id
 
         ")or die("display_db_query:" . mysql_error());

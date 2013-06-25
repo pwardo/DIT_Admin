@@ -17,14 +17,14 @@ $course_data = get_course_data($course_id);
     
     $submitCode = $_POST['updateCode'];
     if ($submitCode && $changeTo){       
-	mysql_query("UPDATE courses SET courses.code = '$changeTo' WHERE courses.id = ".$course_id) or die("display_db_query:" . mysql_error());
+	mysql_query("UPDATE Courses SET Courses.code = '$changeTo' WHERE Courses.id = ".$course_id) or die("display_db_query:" . mysql_error());
         header('Location: course_edit.php?course_id='.$course_id);
     }
     
     $submitTitle = $_POST['updateTitle'];
     if ($submitTitle && $changeTo){
         $changeTo = mysql_real_escape_string($changeTo);
-	mysql_query("UPDATE courses SET courses.title = '$changeTo' WHERE id = ".$course_id) or die("display_db_query:" . mysql_error());
+	mysql_query("UPDATE Courses SET Courses.title = '$changeTo' WHERE id = ".$course_id) or die("display_db_query:" . mysql_error());
         header('Location: course_edit.php?course_id='.$course_id);
     }
     

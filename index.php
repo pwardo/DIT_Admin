@@ -5,7 +5,7 @@ include 'assets/db/user.func.php';
 ?>
 <!DOCTYPE HTML>
 <head>
-      <title>DIT Admin</title>
+      <title>DIT Admin - Index</title>
       <link href="assets/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -14,7 +14,7 @@ include 'assets/db/user.func.php';
   
     <header>
 	<section id="top_header_left">
-		<h1><a href="index.php">DIT Admin</a></h1>
+		<h1><a href="index.php">DIT Admin - Index</a></h1>
 		<h2></h2>		
 	</section>
 		

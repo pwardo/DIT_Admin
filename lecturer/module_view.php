@@ -25,7 +25,7 @@ $course_title = $course_data['title'];
 
 <!DOCTYPE HTML>
 <head>
-      <title>DIT Admin</title>
+      <title>DIT Admin - Module</title>
       <link href="../assets/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>

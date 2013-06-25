@@ -6,7 +6,7 @@ function logged_in(){
 function login_check($username, $password){
     $username = mysql_real_escape_string($username) or die(mysql_error()); // sanitise string
     
-    $login_query = mysql_query("SELECT COUNT(`user_id`) as `count`, `user_id` FROM `users` WHERE `username`='$username' AND `password`='$password'")  or die(mysql_error());  
+    $login_query = mysql_query("SELECT COUNT(`user_id`) as `count`, `user_id` FROM `Users` WHERE `username`='$username' AND `password`='$password'")  or die(mysql_error());  
 //    count the user id, condition is where email and password match a current user. count will be 0 or 1. 1 if user is registered.
     
     return(mysql_result($login_query, 0) == 1) ? mysql_result($login_query, 0, 'user_id') : false;
@@ -21,7 +21,7 @@ function user_data($user_id){
     // impode glues stings together, in this case strings are taken from database.
     // result here is `name``email.
     
-    $query = mysql_query("SELECT $fields FROM users WHERE user_id =".$_SESSION['user_id']) or die(mysql_error());
+    $query = mysql_query("SELECT $fields FROM Users WHERE user_id =".$_SESSION['user_id']) or die(mysql_error());
     $query_result = mysql_fetch_assoc($query);
     // retrieve the fields passed from implode function for the current logged in user.
     // and make associative array from the results.
@@ -63,7 +63,7 @@ function staff_data($user_id){
     // impode glues stings together, in this case strings are taken from database.
     // result here is `name``email.
     
-    $query = mysql_query("SELECT $fields FROM staff WHERE staff.SystemLogin_user_id =".$_SESSION['user_id']) or die(mysql_error());
+    $query = mysql_query("SELECT $fields FROM Staff WHERE Staff.SystemLogin_user_id =".$_SESSION['user_id']) or die(mysql_error());
     $query_result = mysql_fetch_assoc($query);
     // retrieve the fields passed from implode function for the current logged in user.
     // and make associative array from the results.
@@ -160,7 +160,7 @@ function staff_register($staffID, $firstName, $lastName, $email, $password, $mob
     $user_id = mysql_insert_id();
 
     mysql_query("
-            INSERT INTO staff (staff_id, first_name, last_name, address_line1_street, address_line2_town, address_line3_county, address_line4, email, phone_mobile, Job_type_id, SystemLogin_user_id) 
+            INSERT INTO Staff (staff_id, first_name, last_name, address_line1_street, address_line2_town, address_line3_county, address_line4, email, phone_mobile, Job_type_id, SystemLogin_user_id) 
             VALUES('$staffID', '$firstName', '$lastName', '$addressL1', '$addressL2', '$addressL3', '$addressL4', '$email', '$mobileNumber', '2', '$user_id')
         ") or die(mysql_error());
     
@@ -171,12 +171,10 @@ function staff_register($staffID, $firstName, $lastName, $email, $password, $mob
           
 }
 
-
-
 function student_exists($studentID){
     $studentID = mysql_real_escape_string($studentID); // sanitise email
    
-    $query = mysql_query("SELECT COUNT(student_id) FROM students WHERE student_id = '$studentID'"); // returns integer 
+    $query = mysql_query("SELECT COUNT(student_id) FROM Students WHERE student_id = '$studentID'"); // returns integer 
     return(mysql_result($query, 0) == 1) ? true : false; 
     // if returned integer is 0, user is not registered. If interger is 1, student ID is already registered.
 }
@@ -184,7 +182,7 @@ function student_exists($studentID){
 function staff_exists($staffID){
     $staffID = mysql_real_escape_string($staffID); // sanitise email
    
-    $query = mysql_query("SELECT COUNT(staff_id) FROM staff WHERE staff_id = '$staffID'"); // returns integer 
+    $query = mysql_query("SELECT COUNT(staff_id) FROM Staff WHERE staff_id = '$staffID'"); // returns integer 
     return(mysql_result($query, 0) == 1) ? true : false; 
     // if returned integer is 0, user is not registered. If interger is 1, student ID is already registered.
 }
@@ -194,7 +192,7 @@ function course_semester_check($courseID, $semesterID){
     $courseID = (int)$courseID; 
     $semesterID = (int)($semesterID);
    
-    $query = mysql_query("SELECT COUNT(Semesters_id) FROM semesters_has_courses WHERE Semesters_id = '$semesterID'
+    $query = mysql_query("SELECT COUNT(Semesters_id) FROM Semesters_has_courses WHERE Semesters_id = '$semesterID'
             AND Courses_id = '$courseID'
             "); // returns integer 
     return(mysql_result($query, 0) == 1) ? false : true; 
@@ -207,7 +205,7 @@ function get_registration_data($student_id){
         FROM Registrations
 
         WHERE Students_student_id = $student_id
-        ") or die();
+        ") or die(mysql_error());
         
     
     while ($data_row = mysql_fetch_assoc($data_query)){
@@ -225,9 +223,9 @@ function check_lecturer_module_count($staff_id){
     $data_query = mysql_query("
         SELECT Staff_staff_id, 
         COUNT(*) AS module_count 
-        FROM modules_has_staff 
-        WHERE modules_has_staff.Staff_staff_id = '$staff_id';
-        ") or die();
+        FROM Modules_has_Staff 
+        WHERE Modules_has_Staff.Staff_staff_id = '$staff_id';
+        ") or die(mysql_error());
         
     
     while ($data_row = mysql_fetch_assoc($data_query)){
@@ -245,7 +243,7 @@ function check_enrolment_count($reg_id){
         COUNT(*) AS enrolled_count 
         FROM Registrations_has_Modules 
         WHERE Registrations_has_Modules.Registrations_id = '$reg_id'
-        ") or die();
+        ") or die(mysql_error());
         
     
     while ($data_row = mysql_fetch_assoc($data_query)){
@@ -261,7 +259,7 @@ function enrolled($reg_id, $module_id){
     $reg_id = (int)$reg_id;
     $module_id = (int)$module_id;
     
-    $query = mysql_query("SELECT COUNT(Registrations_id) FROM registrations_has_modules 
+    $query = mysql_query("SELECT COUNT(Registrations_id) FROM Registrations_has_Modules 
             WHERE Registrations_id = '$reg_id'
             AND Modules_id = '$module_id'
             "); // returns integer 
@@ -295,17 +293,17 @@ function get_enrolment_data($module_id){
     $classes = array();
     $classes_query = mysql_query("
         SELECT 
-            registrations_has_modules.Registrations_id AS Registrations_id, 
-            registrations_has_modules.grade AS grade, 
-            registrations_has_modules.Modules_id AS Modules_id, 
-            registrations.Students_student_id AS Student_id,
+            Registrations_has_Modules.Registrations_id AS Registrations_id, 
+            Registrations_has_Modules.grade AS grade, 
+            Registrations_has_Modules.Modules_id AS Modules_id, 
+            Registrations.Students_student_id AS Student_id,
             Students.first_name AS first_name,
             Students.last_name AS last_name    
 
-        FROM registrations_has_modules INNER JOIN registrations INNER JOIN Students
-        WHERE registrations_has_modules.Registrations_id = registrations.id 
-            AND registrations.Students_student_id = Students.student_id 
-            AND registrations_has_modules.Modules_id = '$module_id'
+        FROM Registrations_has_Modules INNER JOIN Registrations INNER JOIN Students
+        WHERE Registrations_has_Modules.Registrations_id = Registrations.id 
+            AND Registrations.Students_student_id = Students.student_id 
+            AND Registrations_has_Modules.Modules_id = '$module_id'
 
         ")or die("display_db_query:" . mysql_error());
     
@@ -328,16 +326,16 @@ function get_student_grades($registration_id){
     $classes = array();
     $classes_query = mysql_query("
         SELECT
-            registrations_has_modules.Registrations_id AS Registrations_id, 
-            registrations_has_modules.grade AS grade, 
-            registrations_has_modules.Modules_id AS Modules_id, 
+            Registrations_has_Modules.Registrations_id AS Registrations_id, 
+            Registrations_has_Modules.grade AS grade, 
+            Registrations_has_Modules.Modules_id AS Modules_id, 
             Modules.code AS Modules_code,
             Modules.title AS Modules_title
 
-        FROM registrations_has_modules 
+        FROM Registrations_has_Modules 
             INNER JOIN Modules
         WHERE Registrations_id = '$registration_id'
-            AND Modules.id = registrations_has_modules.Modules_id
+            AND Modules.id = Registrations_has_Modules.Modules_id
 
         ")or die("display_db_query:" . mysql_error());
     
@@ -361,7 +359,7 @@ function get_student_data($student_id){
         FROM Students
 
         WHERE Students.student_id = $student_id
-        ") or die();
+        ") or die(mysql_error());
         
     
     while ($user_data_row = mysql_fetch_assoc($user_data_query)){
@@ -388,7 +386,7 @@ function get_student_data_userid($user_id){
         FROM Students
 
         WHERE Students.SystemLogin_user_id = $user_id
-        ") or die();
+        ") or die(mysql_error());
         
     
     while ($user_data_row = mysql_fetch_assoc($user_data_query)){
@@ -412,10 +410,10 @@ function get_student_data_userid($user_id){
 function get_staff_data($staff_id){
     $user_data_query = mysql_query("
         SELECT staff_id, first_name, last_name, address_line1_street, address_line2_town, address_line3_county, address_line4, email, phone_mobile, phone_home, SystemLogin_user_id
-        FROM staff
+        FROM Staff
 
-        WHERE staff.staff_id = $staff_id
-        ") or die();
+        WHERE Staff.staff_id = $staff_id
+        ") or die(mysql_error());
         
     
     while ($user_data_row = mysql_fetch_assoc($user_data_query)){
@@ -440,10 +438,10 @@ function get_staff_data($staff_id){
 function get_staff_data_by_user_id($user_id){
     $user_data_query = mysql_query("
         SELECT staff_id, first_name, last_name, address_line1_street, address_line2_town, address_line3_county, address_line4, email, phone_mobile, phone_home
-        FROM staff
+        FROM Staff
 
-        WHERE staff.SystemLogin_user_id = '$user_id'
-        ") or die();
+        WHERE Staff.SystemLogin_user_id = '$user_id'
+        ") or die(mysql_error());
         
     
     while ($user_data_row = mysql_fetch_assoc($user_data_query)){

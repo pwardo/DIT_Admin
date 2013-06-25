@@ -11,7 +11,6 @@ if ($myACL->hasPermission('access_lecturer') != true)
     $user_data = user_data('user_id','username');
     $user_id = $_SESSION['user_id'];
     
-
     $staff_data = staff_data('staff_id', 'first_name', 'last_name', 'address_line1_street', 'address_line2_town', 'address_line3_county', 'address_line4', 'email', 'phone_home', 'phone_mobile', 'SystemLogin_user_id');   
     
     $changeTo = $_POST['changeTo']; // If edit button is pressed and new value is entered.
@@ -98,7 +97,7 @@ if ($myACL->hasPermission('access_lecturer') != true)
 ?>
 <!DOCTYPE HTML>
 <head>
-      <title>DIT Admin</title>
+      <title>DIT Admin - Account</title>
       <link href="../assets/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>

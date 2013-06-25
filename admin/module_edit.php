@@ -24,14 +24,14 @@ $modules_lecturer_id = $module_lecturer_data['Staff_staff_id'];
     
     $submitStartDate = $_POST['updateStartDate'];
     if ($submitStartDate && $changeTo){       
-	mysql_query("UPDATE modules SET modules.start_date = '$changeTo' WHERE modules.id = ".$module_id) or die("display_db_query:" . mysql_error());
+	mysql_query("UPDATE Modules SET Modules.start_date = '$changeTo' WHERE Modules.id = ".$module_id) or die("display_db_query:" . mysql_error());
         header('Location: module_edit.php?module_id='.$module_id);
     }
     
     $submitEndDate = $_POST['updateEndDate'];
     if ($submitEndDate && $changeTo){
         $changeTo = mysql_real_escape_string($changeTo);
-	mysql_query("UPDATE modules SET modules.end_date = '$changeTo' WHERE id = ".$module_id) or die("display_db_query:" . mysql_error());
+	mysql_query("UPDATE Modules SET Modules.end_date = '$changeTo' WHERE id = ".$module_id) or die("display_db_query:" . mysql_error());
         header('Location: module_edit.php?module_id='.$module_id);
     }
 
@@ -39,9 +39,9 @@ $modules_lecturer_id = $module_lecturer_data['Staff_staff_id'];
     $radio_selected = $_POST['radio'];
     if ($submitOpenCloseReg){
         if ($radio_selected == 'Closed'){
-            mysql_query("UPDATE modules SET modules.open_closed = 0 WHERE id = ".$module_id) or die("display_db_query:" . mysql_error());
+            mysql_query("UPDATE Modules SET Modules.open_closed = 0 WHERE id = ".$module_id) or die("display_db_query:" . mysql_error());
         } else if($radio_selected == 'Open'){
-            mysql_query("UPDATE modules SET modules.open_closed = 1 WHERE id = ".$module_id) or die("display_db_query:" . mysql_error());
+            mysql_query("UPDATE Modules SET Modules.open_closed = 1 WHERE id = ".$module_id) or die("display_db_query:" . mysql_error());
         }
          
         header('Location: module_edit.php?module_id='.$module_id);
@@ -145,7 +145,7 @@ $modules_lecturer_id = $module_lecturer_data['Staff_staff_id'];
                     if ($submitLecturer){
                        
                         if ($lecturer_selected == 'unassignLecturer') {
-                            mysql_query("DELETE FROM modules_has_staff WHERE Modules_id = ".$module_id) or die("display_db_query:" . mysql_error());
+                            mysql_query("DELETE FROM Modules_has_Staff WHERE Modules_id = ".$module_id) or die("display_db_query:" . mysql_error());
                             header('Location: module_edit.php?module_id='.$module_id);                      
                         } 
                         elseif (!($lecturer_selected === $modules_lecturer_id) && (!empty($modules_lecturer_id))){
@@ -158,7 +158,7 @@ $modules_lecturer_id = $module_lecturer_data['Staff_staff_id'];
                                 $last_name = $l_data['last_name'];
                                 echo '<tr><td colspan="5"><b>', $first_name,' ',$last_name,'</b> is already assigned to teach 3 modules.</td></tr>';
                             } else{
-                                mysql_query("UPDATE modules_has_staff SET Staff_staff_id = ".$lecturer_selected." WHERE Modules_id = ".$module_id) or die("display_db_query:" . mysql_error());
+                                mysql_query("UPDATE Modules_has_Staff SET Staff_staff_id = ".$lecturer_selected." WHERE Modules_id = ".$module_id) or die("display_db_query:" . mysql_error());
                                 header('Location: module_edit.php?module_id='.$module_id);                                
                             }
                         }                        
@@ -172,7 +172,7 @@ $modules_lecturer_id = $module_lecturer_data['Staff_staff_id'];
                                 $last_name = $l_data['last_name'];
                                 echo '<tr><td colspan="5"><b>', $first_name,' ',$last_name,'</b> is already assigned to teach 3 modules.</td></tr>';
                             } else{
-                                mysql_query("INSERT INTO modules_has_staff VALUES('$module_id', '$lecturer_selected')") or die("display_db_query:" . mysql_error());
+                                mysql_query("INSERT INTO Modules_has_Staff VALUES('$module_id', '$lecturer_selected')") or die("display_db_query:" . mysql_error());
                                 header('Location: module_edit.php?module_id='.$module_id);                                
                             }                            
                         }
@@ -212,7 +212,6 @@ $modules_lecturer_id = $module_lecturer_data['Staff_staff_id'];
                         
                         }
                         ?> 
-
                 </tr>
             </form>
         </table>
@@ -265,9 +264,7 @@ $modules_lecturer_id = $module_lecturer_data['Staff_staff_id'];
     </article>
     
     
-    <?php $students = get_enrolment_data($module_id);
-        
-    ?>        
+    <?php $students = get_enrolment_data($module_id); ?>        
     
     <article id="account">
         <h2>Students enrolled for <?php echo $module_data['code']; ?></h2>            

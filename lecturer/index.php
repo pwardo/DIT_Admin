@@ -16,13 +16,11 @@ if ($myACL->hasPermission('access_lecturer') != true)
        
     $staff_data = get_staff_data_by_user_id($user_id);
     $staff_id = $staff_data['staff_id'];
-      
-
 ?>
 
 <!DOCTYPE HTML>
 <head>
-      <title>DIT Admin</title>
+      <title>DIT Admin - Index</title>
       <link href="../assets/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>

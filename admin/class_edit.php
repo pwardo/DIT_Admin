@@ -87,10 +87,7 @@ $module_id = $module_data['id'];
 <?php 
     $days = get_days(); 
     $classes_day_id = $class_data['day_id'];
-    
-    
 ?>
-
                 <tr> <!-- change last name -->
                     <td><span class="Bold">Day: </span></td>
                     <td></td>

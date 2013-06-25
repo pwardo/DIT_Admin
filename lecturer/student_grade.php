@@ -25,7 +25,7 @@ $module_data = get_module_data($module_id);
 
 <!DOCTYPE HTML>
 <head>
-      <title>DIT Admin</title>
+      <title>DIT Admin - Grades</title>
       <link href="../assets/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -89,7 +89,7 @@ $module_data = get_module_data($module_id);
                         }
                     }
                     else{
-                        mysql_query("UPDATE registrations_has_modules 
+                        mysql_query("UPDATE Registrations_has_Modules 
                             SET grade = '$submitGrade'
                                 WHERE Registrations_id = '$registration_id'
                                 AND Modules_id = '$module_id'
